@@ -1,3 +1,5 @@
+import classNames from "classnames"
+import { useState } from "react"
 import "./style/Todo.css"
 
 const TodoCompleteButton = (props) => {
@@ -43,7 +45,33 @@ const Todo = (props) => {
         props.setTodos(todosAfterUncompletingCurrentTodo)
     }
 
-    const todoEditHandler = () => {}
+    const [todoEditTitle, setTodoEditTitle] = useState("")
+    const [todoEditContent, setTodoEditContent] = useState("")
+    const [isEditWriteMode, setIsEditWriteMode] = useState(false)
+
+    const todoEditModeToggleHandler = () => {
+        if (isEditWriteMode) {
+            setIsEditWriteMode(false)
+            todoEditHandler()
+        } else {
+            setIsEditWriteMode(true)
+            setTodoEditTitle(props.todo.title)
+            setTodoEditContent(props.todo.content)
+        }
+    }
+
+    const todoEditHandler = () => {
+        let todosWithoutCurrentTodo = props.todos.filter(
+            (todo) => todo.key !== props.todo.key
+        )
+        let currentTodo = props.todo
+        currentTodo.title = todoEditTitle
+        currentTodo.content = todoEditContent
+        todosWithoutCurrentTodo.push(currentTodo)
+
+        const todosAfterEditingCurrentTodo = todosWithoutCurrentTodo
+        props.setTodos(todosAfterEditingCurrentTodo)
+    }
 
     const todoDeleteHandler = () => {
         const todosWithoutCurrentTodo = props.todos.filter(
@@ -54,8 +82,30 @@ const Todo = (props) => {
 
     return (
         <div className="Todo">
-            <h3>{props.todo.title}</h3>
-            <p>{props.todo.content}</p>
+            <div className="TodoInfo">
+                <h3 className={isEditWriteMode ? "Invisible" : ""}>
+                    {props.todo.title}
+                </h3>
+                <p className={isEditWriteMode ? "Invisible" : ""}>
+                    {props.todo.content}
+                </p>
+                <input
+                    className={isEditWriteMode ? "" : "Invisible"}
+                    value={todoEditTitle}
+                    onChange={(e) => {
+                        setTodoEditTitle(e.target.value)
+                    }}
+                    placeholder="새 제목"
+                />
+                <input
+                    className={isEditWriteMode ? "" : "Invisible"}
+                    value={todoEditContent}
+                    onChange={(e) => {
+                        setTodoEditContent(e.target.value)
+                    }}
+                    placeholder="새 제목"
+                />
+            </div>
             <div className="HorizontalButtonBox">
                 <TodoCompleteButton
                     isDone={props.todo.isDone}
@@ -64,7 +114,7 @@ const Todo = (props) => {
                 />
                 <button
                     className="Button SecondaryButton"
-                    onClick={todoEditHandler}
+                    onClick={todoEditModeToggleHandler}
                 >
                     수정하기
                 </button>
