@@ -9,12 +9,12 @@ const Home = (props) => {
                 <div className="TodoListLeft">
                     <h3>Working...</h3>
                     <hr />
-                    <TodoList isDone={false} />
+                    <TodoList todos={props.todos} isDone={false} />
                 </div>
                 <div className="TodoListRight">
                     <h3>Completed!</h3>
                     <hr />
-                    <TodoList isDone={true} />
+                    <TodoList todos={props.todos} isDone={true} />
                 </div>
             </div>
         </div>

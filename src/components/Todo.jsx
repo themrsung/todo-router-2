@@ -2,9 +2,9 @@ import "./style/Todo.css"
 
 const TodoCompleteButton = (props) => {
     return props.isDone ? (
-        <button className="SecondaryButton">취소하기</button>
+        <button className="Button SecondaryButton">취소하기</button>
     ) : (
-        <button className="PrimaryButton">완료하기</button>
+        <button className="Button PrimaryButton">완료하기</button>
     )
 }
 
@@ -17,12 +17,12 @@ const Todo = (props) => {
 
     return (
         <div className="Todo">
-            <h3>TODO NAME</h3>
-            <p>TODO CONTENT</p>
+            <h3>{props.todo.title}</h3>
+            <p>{props.todo.content}</p>
             <div className="HorizontalButtonBox">
-                <TodoCompleteButton isDone={props.isDone} />
-                <button class="SecondaryButton">수정하기</button>
-                <button class="WarningButton">삭제하기</button>
+                <TodoCompleteButton isDone={props.todo.isDone} />
+                <button class="Button SecondaryButton">수정하기</button>
+                <button class="Button WarningButton">삭제하기</button>
             </div>
         </div>
     )
