@@ -18,8 +18,6 @@ const Home = (props) => {
         if (newTodoTitle !== "" && newTodoContent !== "") {
             let todos = props.todos
 
-            console.log(props.nextTodoKey)
-
             todos.push({
                 title: newTodoTitle,
                 content: newTodoContent,
