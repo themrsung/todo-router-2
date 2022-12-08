@@ -1,0 +1,16 @@
+.TodoListContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.TodoListLeft {
+    margin-right: auto;
+    max-width: 48%;
+}
+
+.TodoListRight {
+    margin-left: auto;
+    max-width: 48%;
+}

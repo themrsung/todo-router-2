@@ -9,3 +9,28 @@
 body {
     margin: 0px;
 }
+
+.OuterWrap {
+    margin: 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Wrap {
+    max-width: 1200px;
+    width: 70vw;
+}
+
+.HorizontalButtonBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.HorizontalButtonBox > button {
+    margin: auto 2%;
+}
