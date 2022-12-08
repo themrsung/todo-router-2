@@ -1,0 +1,16 @@
+.LandingForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 10px auto;
+}
+
+.LandingFormContent {
+    margin: 5px 10px;
+}
+
+.LandingFormContent > * {
+    margin: auto 3px;
+}

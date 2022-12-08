@@ -8,7 +8,14 @@ const TodoList = (props) => {
     return (
         <div className="TodoList">
             {todos.map((todo) => {
-                return <Todo todo={todo} />
+                return (
+                    <Todo
+                        todos={props.todos}
+                        todo={todo}
+                        key={todo.key}
+                        setTodos={props.setTodos}
+                    />
+                )
             })}
         </div>
     )

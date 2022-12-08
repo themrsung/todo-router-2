@@ -11,14 +11,17 @@ function App() {
     const [userName, setUserName] = useState("username")
     const [motd, setMotd] = useState("안녕하세요!")
 
+    const [nextTodoKey, setNextTodoKey] = useState(2)
     const [todos, setTodos] = useState([
         {
+            key: 0,
             title: "정밀사격",
             content: "10m에서 1MOA 명중률 달성하기",
             isDone: false
         },
 
         {
+            key: 1,
             title: "연속사격",
             content: "10m에서 탄창 10개 비우기",
             isDone: true
@@ -46,8 +49,10 @@ function App() {
                             <Home
                                 userName={userName}
                                 todos={todos}
+                                nextTodoKey={nextTodoKey}
                                 setUserName={setUserName}
                                 setTodos={setTodos}
+                                setNextTodoKey={setNextTodoKey}
                             />
                         }
                     />

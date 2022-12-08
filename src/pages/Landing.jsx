@@ -22,14 +22,22 @@ const Landing = (props) => {
     return (
         <div className="Landing Wrap">
             <form className="LandingForm" onSubmit={landingFormSubmitHandler}>
-                <label>이름</label>
-                <input
-                    value={landingFormName}
-                    onChange={(e) => setLandingFormName(e.target.value)}
-                    placeholder="이름을 입력하세요..."
-                />
-
-                <button type="submit">TODO-LIST 만들기</button>
+                <div className="LandingFormContent">
+                    <label>이름</label>
+                    <input
+                        value={landingFormName}
+                        onChange={(e) => setLandingFormName(e.target.value)}
+                        placeholder="이름을 입력하세요..."
+                    />
+                </div>
+                <div className="LandingFormContent">
+                    <button
+                        className="Button PrimaryButton BigButton"
+                        type="submit"
+                    >
+                        TODO-LIST 만들기
+                    </button>
+                </div>
             </form>
         </div>
     )
