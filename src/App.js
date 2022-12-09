@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Landing from "./pages/Landing"
 import Header from "./components/Header"
 import { useState } from "react"
+import ViewTodo from "./pages/ViewTodo"
 
 function App() {
     const [userName, setUserName] = useState("username")
@@ -55,6 +56,10 @@ function App() {
                                 setNextTodoKey={setNextTodoKey}
                             />
                         }
+                    />
+                    <Route
+                        path="viewtodo"
+                        element={<ViewTodo todos={todos} setTodos={setTodos} />}
                     />
                 </Routes>
             </BrowserRouter>

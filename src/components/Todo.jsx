@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import "./style/Todo.css"
 
 const TodoCompleteButton = (props) => {
@@ -79,9 +80,20 @@ const Todo = (props) => {
         props.setTodos(todosWithoutCurrentTodo)
     }
 
+    const noLink = false || props.noLink
+
+    let navigate = useNavigate()
+
     return (
         <div className="Todo">
-            <div className="TodoInfo">
+            <div
+                className="TodoInfo"
+                onClick={() => {
+                    if (!noLink) {
+                        navigate("/viewtodo?todo_key=" + String(props.todo.key))
+                    }
+                }}
+            >
                 <h3 className={isEditWriteMode ? "Invisible" : ""}>
                     {props.todo.title}
                 </h3>
