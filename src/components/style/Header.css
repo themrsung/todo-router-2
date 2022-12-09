@@ -8,4 +8,10 @@
     justify-content: center;
 
     height: 20vh;
+
+    text-align: center;
+}
+
+.HeaderCreditInfo {
+    font-size: smaller;
 }
