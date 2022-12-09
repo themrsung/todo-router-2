@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import "./style/ViewTodo.css"
 import Todo from "../components/Todo"
 
