@@ -59,6 +59,10 @@
     font-size: medium;
 }
 
+.NewTodoContent > input {
+    border-radius: 5px;
+}
+
 .TodoListContainer {
     display: flex;
     flex-direction: row;

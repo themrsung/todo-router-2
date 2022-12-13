@@ -12,6 +12,8 @@ function App() {
     const [userName, setUserName] = useState("username")
     const [motd, setMotd] = useState("안녕하세요!")
 
+    // redux 안 썼습니다ㅋㅋ
+
     const [nextTodoKey, setNextTodoKey] = useState(2)
     const [todos, setTodos] = useState([
         {
