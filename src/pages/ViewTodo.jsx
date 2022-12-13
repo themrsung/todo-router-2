@@ -15,7 +15,7 @@ const ViewTodo = (props) => {
             <div className="ViewTodoInnerWrap">
                 <div className="ViewTodoBackButtonArea">
                     <button
-                        className="Button SecondaryButton BigButton"
+                        className="Button WarningButton BigButton"
                         onClick={() => navigate(-1)}
                     >
                         X
