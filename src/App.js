@@ -46,7 +46,6 @@ function App() {
                             />
                         }
                     />
-                    {/* LOUIS XIV */}
                     <Route
                         path="home"
                         element={
