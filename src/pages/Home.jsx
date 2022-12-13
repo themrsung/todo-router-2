@@ -2,6 +2,8 @@ import { useState } from "react"
 import TodoList from "../components/TodoList"
 import "./style/Home.css"
 
+// redux not implemented
+
 const Home = (props) => {
     const todoProgress =
         props.todos.filter((todo) => todo.isDone).length / props.todos.length
