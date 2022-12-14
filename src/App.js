@@ -7,30 +7,22 @@ import Landing from "./pages/Landing"
 import Header from "./components/Header"
 import { useState } from "react"
 import ViewTodo from "./pages/ViewTodo"
+import { todosIdStore, todosStore } from "./redux/redux"
 
 function App() {
     const [userName, setUserName] = useState("username")
     const [motd, setMotd] = useState("안녕하세요!")
 
-    // redux 안 썼습니다ㅋㅋ
-
-    const [nextTodoKey, setNextTodoKey] = useState(2)
-    const [todos, setTodos] = useState([
-        {
-            key: 0,
-            title: "정밀사격",
-            content: "10m에서 1MOA 명중률 달성하기",
-            isDone: false
-        },
-
-        {
-            key: 1,
-            title: "연속사격",
-            content: "10m에서 탄창 10개 비우기",
-            isDone: true
-        }
-    ])
-
+    const [nextTodoKey, setNextTodoKey] = useState(
+        todosIdStore.getState().value
+    )
+    const [todos, setTodos] = useState(todosStore.getState().value)
+    todosIdStore.subscribe(() => {
+        setNextTodoKey(todosIdStore.getState().value)
+    })
+    todosStore.subscribe(() => {
+        setTodos(todosStore.getState().value)
+    })
     return (
         <div className="OuterWrap">
             <Header motd={motd} />

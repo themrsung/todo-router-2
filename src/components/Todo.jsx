@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { todosStore } from "../redux/redux"
 import "./style/Todo.css"
 
 const TodoCompleteButton = (props) => {
@@ -22,27 +23,51 @@ const TodoCompleteButton = (props) => {
 
 const Todo = (props) => {
     const todoCompletedHandler = () => {
-        let todosWithoutCurrentTodo = props.todos.filter(
-            (todo) => todo.key !== props.todo.key
-        )
-        let currentTodo = props.todo
-        currentTodo.isDone = true
-        todosWithoutCurrentTodo.push(currentTodo)
+        // let todosWithoutCurrentTodo = props.todos.filter(
+        //     (todo) => todo.key !== props.todo.key
+        // )
+        // let currentTodo = props.todo
+        // currentTodo.isDone = true
+        // todosWithoutCurrentTodo.push(currentTodo)
 
-        const todosAfterCompletingCurrentTodo = todosWithoutCurrentTodo
-        props.setTodos(todosAfterCompletingCurrentTodo)
+        // const todosAfterCompletingCurrentTodo = todosWithoutCurrentTodo
+        // props.setTodos(todosAfterCompletingCurrentTodo)
+
+        const currentTodo = props.todo
+        todosStore.dispatch({
+            type: "todos/removed",
+            payload: currentTodo
+        })
+        const newTodo = currentTodo
+        newTodo.isDone = true
+        todosStore.dispatch({
+            type: "todos/added",
+            payload: newTodo
+        })
     }
 
     const todoUncompleteHandler = () => {
-        let todosWithoutCurrentTodo = props.todos.filter(
-            (todo) => todo.key !== props.todo.key
-        )
-        let currentTodo = props.todo
-        currentTodo.isDone = false
-        todosWithoutCurrentTodo.push(currentTodo)
+        // let todosWithoutCurrentTodo = props.todos.filter(
+        //     (todo) => todo.key !== props.todo.key
+        // )
+        // let currentTodo = props.todo
+        // currentTodo.isDone = false
+        // todosWithoutCurrentTodo.push(currentTodo)
 
-        const todosAfterUncompletingCurrentTodo = todosWithoutCurrentTodo
-        props.setTodos(todosAfterUncompletingCurrentTodo)
+        // const todosAfterUncompletingCurrentTodo = todosWithoutCurrentTodo
+        // props.setTodos(todosAfterUncompletingCurrentTodo)
+
+        const currentTodo = props.todo
+        todosStore.dispatch({
+            type: "todos/removed",
+            payload: currentTodo
+        })
+        const newTodo = currentTodo
+        newTodo.isDone = false
+        todosStore.dispatch({
+            type: "todos/added",
+            payload: newTodo
+        })
     }
 
     const [todoEditTitle, setTodoEditTitle] = useState("")
@@ -61,23 +86,36 @@ const Todo = (props) => {
     }
 
     const todoEditHandler = () => {
-        let todosWithoutCurrentTodo = props.todos.filter(
-            (todo) => todo.key !== props.todo.key
-        )
-        let currentTodo = props.todo
-        currentTodo.title = todoEditTitle
-        currentTodo.content = todoEditContent
-        todosWithoutCurrentTodo.push(currentTodo)
+        // let todosWithoutCurrentTodo = props.todos.filter(
+        //     (todo) => todo.key !== props.todo.key
+        // )
+        // let currentTodo = props.todo
+        // currentTodo.title = todoEditTitle
+        // currentTodo.content = todoEditContent
+        // todosWithoutCurrentTodo.push(currentTodo)
 
-        const todosAfterEditingCurrentTodo = todosWithoutCurrentTodo
-        props.setTodos(todosAfterEditingCurrentTodo)
+        // const todosAfterEditingCurrentTodo = todosWithoutCurrentTodo
+        // props.setTodos(todosAfterEditingCurrentTodo)
+
+        const currentTodo = props.todo
+        todosStore.dispatch({
+            type: "todos/removed",
+            payload: currentTodo
+        })
+        const newTodo = currentTodo
+        newTodo.title = todoEditTitle
+        newTodo.content = todoEditContent
+        todosStore.dispatch({
+            type: "todos/added",
+            payload: newTodo
+        })
     }
 
     const todoDeleteHandler = () => {
-        const todosWithoutCurrentTodo = props.todos.filter(
-            (todo) => todo.key !== props.todo.key
-        )
-        props.setTodos(todosWithoutCurrentTodo)
+        todosStore.dispatch({
+            type: "todos/removed",
+            payload: props.todo
+        })
     }
 
     const noLink = false || props.noLink
@@ -89,7 +127,7 @@ const Todo = (props) => {
             <div
                 className="TodoInfo"
                 onClick={() => {
-                    if (!noLink) {
+                    if (!noLink && !isEditWriteMode) {
                         navigate("/viewtodo?todo_key=" + String(props.todo.key))
                     }
                 }}

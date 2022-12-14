@@ -1,5 +1,6 @@
 import { useState } from "react"
 import TodoList from "../components/TodoList"
+import { todosIdStore, todosStore } from "../redux/redux"
 import "./style/Home.css"
 
 // redux not implemented
@@ -18,17 +19,14 @@ const Home = (props) => {
     const newTodoFormSubmitHandler = (event) => {
         event.preventDefault()
         if (newTodoTitle !== "" && newTodoContent !== "") {
-            let todos = props.todos
-
-            todos.push({
+            const newTodo = {
                 title: newTodoTitle,
                 content: newTodoContent,
                 key: props.nextTodoKey,
                 isDone: false
-            })
-
-            props.setNextTodoKey(props.nextTodoKey + 1)
-            props.setTodos(todos)
+            }
+            todosStore.dispatch({ type: "todos/added", payload: newTodo })
+            todosIdStore.dispatch({ type: "todosId/incremented" })
 
             setNewTodoTitle("")
             setNewTodoContent("")
